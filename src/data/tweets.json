@@ -1,0 +1,260 @@
+{
+  "tweets": [
+    {
+      "id": "1",
+      "text": "How to grow on X (writing from the bottom of my heart): First ask yourself - Are you creating quality content? Are you doing something original or just copying others? Are you doing research before posting? Format matters - Anyone can write, but only those with a banger format stand out.",
+      "author": {
+        "name": "Param",
+        "handle": "@Param_eth",
+        "avatar": "https://unavatar.io/twitter/Param_eth"
+      },
+      "category": "Growth",
+      "date": "2026-02-15",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/Param_eth/status/2022707097495035943",
+      "upvotes": 0
+    },
+    {
+      "id": "2",
+      "text": "The Twitter Algorithm & Growth Guide — I've spent the last week going over the twitter algorithm code, line by line, to understand exactly how it works.",
+      "author": {
+        "name": "The Crypto Intern",
+        "handle": "@ProofofIntern",
+        "avatar": "https://unavatar.io/twitter/ProofofIntern"
+      },
+      "category": "Growth",
+      "date": "2026-02-10",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/ProofofIntern/status/2018307997085184035",
+      "upvotes": 0
+    },
+    {
+      "id": "3",
+      "text": "Every Article On Growth You'll Ever Need — Bookmark this article, you'll want to come back to it. This is a list of the BEST articles, threads, and CT hacks I have read.",
+      "author": {
+        "name": "Glenn",
+        "handle": "@Glenn6",
+        "avatar": "https://unavatar.io/twitter/Glenn6"
+      },
+      "category": "Growth",
+      "date": "2026-01-20",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/Glenn6/status/1985405660104741355",
+      "upvotes": 0
+    },
+    {
+      "id": "4",
+      "text": "Unpopular opinion: 99% of Web3 marketing isn't marketing. Its random tactics disguised as \"campaigns\": WL raffle, Airdrop hyping, Space announcement. \"Engagement = success\" — Feels loud and active, but the end result is the same: zero new users. I'm not interested in vanity metrics.",
+      "author": {
+        "name": "Yowie",
+        "handle": "@0xYowie",
+        "avatar": "https://unavatar.io/twitter/0xYowie"
+      },
+      "category": "Web3 Marketing",
+      "date": "2026-01-22",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/0xYowie/status/1986415384333840519",
+      "upvotes": 0
+    },
+    {
+      "id": "5",
+      "text": "As you build your brand, one thing is certain. You need to make connections and expand your network. I know that's not an easy thing to do, so I found a more streamlined way to do it.",
+      "author": {
+        "name": "Doris",
+        "handle": "@I_amDorris",
+        "avatar": "https://unavatar.io/twitter/I_amDorris"
+      },
+      "category": "Personal Branding",
+      "date": "2026-02-08",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/I_amDorris/status/2014605786593272029",
+      "upvotes": 0
+    },
+    {
+      "id": "6",
+      "text": "What We Learned After Running Hundreds of Viral Web3 Launch Campaigns — From 2023 to 2024, Surgence Labs was doing what most people would call \"marketing\" for ecosystems. Distribution strategy. KOL campaigns. Community growth. Content systems. Launch coordination. The whole playbook.",
+      "author": {
+        "name": "ruthy",
+        "handle": "@ruthybuilds",
+        "avatar": "https://unavatar.io/twitter/ruthybuilds"
+      },
+      "category": "Web3 Marketing",
+      "date": "2026-02-07",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/ruthybuilds/status/2014230669556433009",
+      "upvotes": 0
+    },
+    {
+      "id": "7",
+      "text": "How to Grow: 2026 X Algo (Exact DOs & DON'Ts) — Algorithm breakdowns are flooding the timelines. This will cover exactly what to DO and DON'T to grow your account. Short and sweet.",
+      "author": {
+        "name": "Emily Lai",
+        "handle": "@emilylai",
+        "avatar": "https://unavatar.io/twitter/emilylai"
+      },
+      "category": "Growth",
+      "date": "2026-02-06",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/emilylai/status/2013625252018884637",
+      "upvotes": 0
+    },
+    {
+      "id": "8",
+      "text": "Web3 Agencies that you need to know — InfoFi is dead. Gone. Not coming back. I see a lot of newer Creators and KOLs panic because part of their income just disappeared. But I've been doing content for years now and take it from me: this is a good thing. Great even.",
+      "author": {
+        "name": "zaimiri",
+        "handle": "@zaimiri",
+        "avatar": "https://unavatar.io/twitter/zaimiri"
+      },
+      "category": "Web3 Marketing",
+      "date": "2026-02-04",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/zaimiri/status/2012106266764611617",
+      "upvotes": 0
+    },
+    {
+      "id": "9",
+      "text": "My daily go-to apps + websites: X Pro, Claude, Spotify, Loveable, Canva, Zora, Typefully, Comet Browser, Gemini Pro, workout tracker, calendar, YouTube, Base app, Telegram, Audible, CapCut, Google Photos, Gmail, and Hinge.",
+      "author": {
+        "name": "Medusa",
+        "handle": "@MedusaOnchain",
+        "avatar": "https://unavatar.io/twitter/MedusaOnchain"
+      },
+      "category": "Content Strategy",
+      "date": "2026-02-04",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/MedusaOnchain/status/2012094223739412931",
+      "upvotes": 0
+    },
+    {
+      "id": "10",
+      "text": "The Creator Economy Boom of 2026 — Do not be mistaken, now is the greatest time to be a creator. We've all been part of the creator economy this year but I'm putting more time into studying the real uptrend in this entire market. The numbers are wild, the opportunities are endless, and the barrier to entry has never been lower.",
+      "author": {
+        "name": "GB",
+        "handle": "@HeyYoGB",
+        "avatar": "https://unavatar.io/twitter/HeyYoGB"
+      },
+      "category": "Growth",
+      "date": "2026-01-15",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/HeyYoGB/status/2000961407924289973",
+      "upvotes": 0
+    },
+    {
+      "id": "11",
+      "text": "Marketing minute: your community is the best marketing team you'll ever have. Give them what they need: direct access to the team, documents on your product, brand assets so they can make quality content. Enable your creators properly and they'll move mountains for you.",
+      "author": {
+        "name": "GB",
+        "handle": "@HeyYoGB",
+        "avatar": "https://unavatar.io/twitter/HeyYoGB"
+      },
+      "category": "Community Building",
+      "date": "2026-01-05",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/HeyYoGB/status/1993305428743405844",
+      "upvotes": 0
+    },
+    {
+      "id": "12",
+      "text": "Pro-tip for easy content. Every time you go to comment on something (not as a reply guy, but a real value adding comment), just quote repost it instead. You'll easily hit 4-5 posts a day without even trying.",
+      "author": {
+        "name": "Alex is Building",
+        "handle": "@AlexIsBuilding",
+        "avatar": "https://unavatar.io/twitter/AlexIsBuilding"
+      },
+      "category": "Content Strategy",
+      "date": "2026-01-04",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/AlexIsBuilding/status/1992991498477224053",
+      "upvotes": 0
+    },
+    {
+      "id": "13",
+      "text": "Marketing minute: stop only looking at what worked in this space. Take inspiration from outside sources — different industries, different eras. Go back in time, find what stood out, and adapt it. Great campaigns come from taking risks, not just copying what everyone else is doing.",
+      "author": {
+        "name": "GB",
+        "handle": "@HeyYoGB",
+        "avatar": "https://unavatar.io/twitter/HeyYoGB"
+      },
+      "category": "Content Strategy",
+      "date": "2026-01-04",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/HeyYoGB/status/1992932126493438088",
+      "upvotes": 0
+    },
+    {
+      "id": "14",
+      "text": "The most underused 'reply guy' tactic to stand out amongst all replies: this came up in the intern office hours yesterday and I realised I've only posted this 2-3 times so here's an easy way to stand out amongst all the other 'reply guys' that no one is using.",
+      "author": {
+        "name": "The Crypto Intern",
+        "handle": "@ProofofIntern",
+        "avatar": "https://unavatar.io/twitter/ProofofIntern"
+      },
+      "category": "Growth",
+      "date": "2026-01-01",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/ProofofIntern/status/1991492212144906347",
+      "upvotes": 0
+    },
+    {
+      "id": "15",
+      "text": "Most copy explains what something does instead of what it does for you. The fastest way to fix that: add \"so you can\" after your sentence. Example: \"stake your tokens and earn rewards\" becomes \"stake your tokens to earn rewards so you can build passive income without thinking about it.\"",
+      "author": {
+        "name": "The Crypto Intern",
+        "handle": "@ProofofIntern",
+        "avatar": "https://unavatar.io/twitter/ProofofIntern"
+      },
+      "category": "Copywriting",
+      "date": "2025-12-28",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/ProofofIntern/status/1988954550670352842",
+      "upvotes": 0
+    },
+    {
+      "id": "16",
+      "text": "Feel invisible on X? Here's 10 ways to break out of it: post every day — momentum over perfection. Reply with intent, not desperation. Build a clean profile that speaks about you. Pick a niche and get obsessed. Study the ones who've already won. Learn to write better.",
+      "author": {
+        "name": "Glenn",
+        "handle": "@Glenn6",
+        "avatar": "https://unavatar.io/twitter/Glenn6"
+      },
+      "category": "Personal Branding",
+      "date": "2025-12-25",
+      "likes": 0,
+      "retweets": 0,
+      "bookmarks": 0,
+      "tweetUrl": "https://x.com/Glenn6/status/1987128001356832985",
+      "upvotes": 0
+    }
+  ]
+}
