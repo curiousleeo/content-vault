@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Tweet, Category, SortOption, Contributor } from "@/types";
 import tweetsData from "@/data/tweets.json";
 import contributorsData from "@/data/contributors.json";
@@ -28,12 +28,32 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<SortOption>("date");
   const [showAddModal, setShowAddModal] = useState(false);
 
-  const handleTweetAdded = useCallback(() => {
-    window.location.reload();
+  // Static JSON as initial state — no flash on load
+  // useEffect fetches live data from KV (production) or returns same JSON (local)
+  const [tweets, setTweets] = useState<Tweet[]>(tweetsData.tweets as Tweet[]);
+  const [contributors, setContributors] = useState<Contributor[]>(
+    contributorsData.contributors as Contributor[]
+  );
+
+  const fetchData = useCallback(() => {
+    fetch("/api/tweets")
+      .then((r) => r.json())
+      .then((data) => { if (data.tweets) setTweets(data.tweets); })
+      .catch(() => {}); // silently fall back to static data
+
+    fetch("/api/contributors")
+      .then((r) => r.json())
+      .then((data) => { if (data.contributors) setContributors(data.contributors); })
+      .catch(() => {});
   }, []);
 
-  const tweets = tweetsData.tweets as Tweet[];
-  const contributors = contributorsData.contributors as Contributor[];
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const handleTweetAdded = useCallback(() => {
+    fetchData();
+  }, [fetchData]);
 
   // Unique author count
   const authorCount = useMemo(() => {
@@ -76,7 +96,6 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
         <Header tweetCount={tweets.length} authorCount={authorCount} />
 
         {/* Controls */}
@@ -137,13 +156,9 @@ export default function Home() {
           </div>
         )}
 
-        {/* Authors Showcase */}
         <AuthorsShowcase tweets={tweets} />
-
-        {/* Contributors */}
         <Contributors contributors={contributors} />
 
-        {/* Footer */}
         <footer className="mt-20 pt-8 border-t border-[#1a1a1a]">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-[#333] text-sm font-bold tracking-widest uppercase">
