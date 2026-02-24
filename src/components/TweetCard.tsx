@@ -286,7 +286,7 @@ export default function TweetCard({ tweet }: TweetCardProps) {
               {/* Tweet This — shares the card URL; Twitter auto-renders the OG image */}
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                  `"${tweet.text.length > 180 ? tweet.text.substring(0, 177) + "..." : tweet.text}"\n\n— ${tweet.author.handle}\n\nvia @MarketingVault\nhttps://marketing-tweets-repo.vercel.app/card/${tweet.id}`
+                  `"${tweet.text.length > 180 ? tweet.text.substring(0, 177) + "..." : tweet.text}"\n\n— ${tweet.author.handle}\n\nFrom The Marketing Tweet Vault\nhttps://marketing-tweets-repo.vercel.app/card/${tweet.id}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
