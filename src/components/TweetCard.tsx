@@ -8,13 +8,44 @@ interface TweetCardProps {
   tweet: Tweet;
 }
 
-const categoryColors: Record<string, string> = {
-  "Content Strategy": "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  "Personal Branding": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  "Community Building": "bg-green-500/20 text-green-300 border-green-500/30",
-  "Web3 Marketing": "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
-  "Copywriting": "bg-pink-500/20 text-pink-300 border-pink-500/30",
-  "Growth": "bg-orange-500/20 text-orange-300 border-orange-500/30",
+// Vivid category border + badge colors
+const categoryStyle: Record<string, { border: string; badge: string; dot: string }> = {
+  "Content Strategy": {
+    border: "border-l-[#d4ff00]",
+    badge: "bg-[#d4ff00]/10 text-[#d4ff00] border-[#d4ff00]/20",
+    dot: "bg-[#d4ff00]",
+  },
+  "Personal Branding": {
+    border: "border-l-[#38bdf8]",
+    badge: "bg-[#38bdf8]/10 text-[#38bdf8] border-[#38bdf8]/20",
+    dot: "bg-[#38bdf8]",
+  },
+  "Community Building": {
+    border: "border-l-[#fb923c]",
+    badge: "bg-[#fb923c]/10 text-[#fb923c] border-[#fb923c]/20",
+    dot: "bg-[#fb923c]",
+  },
+  "Web3 Marketing": {
+    border: "border-l-[#c084fc]",
+    badge: "bg-[#c084fc]/10 text-[#c084fc] border-[#c084fc]/20",
+    dot: "bg-[#c084fc]",
+  },
+  "Copywriting": {
+    border: "border-l-[#f472b6]",
+    badge: "bg-[#f472b6]/10 text-[#f472b6] border-[#f472b6]/20",
+    dot: "bg-[#f472b6]",
+  },
+  "Growth": {
+    border: "border-l-[#4ade80]",
+    badge: "bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/20",
+    dot: "bg-[#4ade80]",
+  },
+};
+
+const fallbackStyle = {
+  border: "border-l-[#555]",
+  badge: "bg-[#333] text-[#aaa] border-[#444]",
+  dot: "bg-[#555]",
 };
 
 function formatDate(dateString: string): string {
@@ -49,6 +80,9 @@ export default function TweetCard({ tweet }: TweetCardProps) {
   const [upvotes, setUpvotes] = useState(tweet.upvotes || 0);
   const [hasUpvoted, setHasUpvoted] = useState(false);
   const [upvoting, setUpvoting] = useState(false);
+  const [popped, setPopped] = useState(false);
+
+  const style = categoryStyle[tweet.category] || fallbackStyle;
 
   useEffect(() => {
     setHasUpvoted(getUpvotedTweets().has(tweet.id));
@@ -61,6 +95,9 @@ export default function TweetCard({ tweet }: TweetCardProps) {
     if (hasUpvoted || upvoting) return;
 
     setUpvoting(true);
+    setPopped(true);
+    setTimeout(() => setPopped(false), 300);
+
     try {
       const res = await fetch("/api/upvote", {
         method: "POST",
@@ -81,40 +118,45 @@ export default function TweetCard({ tweet }: TweetCardProps) {
   };
 
   const cardContent = (
-    <>
-      {/* Category Badge + Upvote */}
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full">
+      {/* Top row: category badge + upvote */}
+      <div className="flex items-start justify-between gap-2 mb-4">
         <span
-          className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${
-            categoryColors[tweet.category] || "bg-slate-500/20 text-slate-300"
-          }`}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md border ${style.badge}`}
         >
+          <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
           {tweet.category}
         </span>
+
+        {/* Upvote button */}
         <button
           onClick={handleUpvote}
           disabled={hasUpvoted || upvoting}
-          className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+          title={hasUpvoted ? "Already upvoted" : "Upvote this tweet"}
+          className={`flex flex-col items-center gap-0.5 px-2.5 py-1.5 rounded-lg border text-xs font-bold transition-all duration-200 min-w-[40px] ${
             hasUpvoted
-              ? "bg-purple-500/20 text-purple-300 border border-purple-500/40"
-              : "bg-slate-700/50 text-slate-400 border border-slate-600 hover:bg-purple-500/20 hover:text-purple-300 hover:border-purple-500/40"
-          }`}
+              ? "bg-[#d4ff00]/10 text-[#d4ff00] border-[#d4ff00]/30 cursor-default"
+              : "bg-[#1a1a1a] text-[#666] border-[#2a2a2a] hover:bg-[#d4ff00]/10 hover:text-[#d4ff00] hover:border-[#d4ff00]/30 active:scale-90"
+          } ${popped ? "animate-pop" : ""}`}
         >
-          <svg className="w-3.5 h-3.5" fill={hasUpvoted ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          <svg
+            className="w-3 h-3"
+            viewBox="0 0 24 24"
+            fill={hasUpvoted ? "currentColor" : "none"}
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 4L4 14h16L12 4z" />
           </svg>
-          {upvotes}
+          <span>{upvotes}</span>
         </button>
       </div>
 
-      {/* Tweet Text */}
-      <p className="text-slate-200 text-sm leading-relaxed mb-6 line-clamp-6">
-        {tweet.text}
-      </p>
-
-      {/* Author Info */}
-      <div className="flex items-center gap-3 mb-4">
-        <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-purple-500/30">
+      {/* Author row */}
+      <div className="flex items-center gap-2.5 mb-4">
+        <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 ring-1 ring-[#2a2a2a]">
           <Image
             src={tweet.author.avatar}
             alt={tweet.author.name}
@@ -122,40 +164,47 @@ export default function TweetCard({ tweet }: TweetCardProps) {
             className="object-cover"
           />
         </div>
-        <div>
-          <p className="text-white font-medium text-sm">{tweet.author.name}</p>
-          <p className="text-slate-400 text-xs">{tweet.author.handle}</p>
+        <div className="min-w-0">
+          <p className="text-white font-semibold text-sm truncate">{tweet.author.name}</p>
+          <p className="text-[#555] text-xs truncate">{tweet.author.handle}</p>
         </div>
       </div>
 
-      {/* Footer: Date and Contributor */}
-      <div className="flex items-center justify-between pt-4 border-t border-slate-700/50">
-        <div className="flex flex-col">
-          <span className="text-slate-500 text-xs">{formatDate(tweet.date)}</span>
+      {/* Tweet text — the STAR of the card */}
+      <p className="text-[#d0d0d0] text-[15px] leading-relaxed flex-1 line-clamp-6 mb-5">
+        {tweet.text}
+      </p>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between pt-3 border-t border-[#1f1f1f] mt-auto">
+        <div>
+          <span className="text-[#444] text-xs">{formatDate(tweet.date)}</span>
           {tweet.contributedBy && (
-            <span className="text-slate-500 text-xs mt-0.5">
-              Added by{" "}
-              <span className="text-purple-400">{tweet.contributedBy.handle}</span>
-            </span>
+            <p className="text-[#444] text-xs mt-0.5">
+              by{" "}
+              <span className="text-[#d4ff00]/70">{tweet.contributedBy.handle}</span>
+            </p>
           )}
         </div>
         {tweet.tweetUrl && (
-          <span className="text-slate-500 text-xs hover:text-purple-400 transition-colors">
-            View original &rarr;
+          <span className="text-[#444] text-xs font-medium group-hover:text-[#d4ff00] transition-colors">
+            View →
           </span>
         )}
       </div>
-
-      {/* Hover Glow Effect */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-    </>
+    </div>
   );
 
-  const cardClass = "group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 cursor-pointer";
+  const cardClass = `group relative bg-[#111] border border-[#1f1f1f] border-l-4 ${style.border} rounded-xl p-5 hover:border-[#2a2a2a] hover:bg-[#151515] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer h-full flex flex-col`;
 
   if (tweet.tweetUrl) {
     return (
-      <a href={tweet.tweetUrl} target="_blank" rel="noopener noreferrer" className={`block ${cardClass}`}>
+      <a
+        href={tweet.tweetUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`block ${cardClass}`}
+      >
         {cardContent}
       </a>
     );

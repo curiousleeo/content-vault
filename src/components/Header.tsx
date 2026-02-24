@@ -1,32 +1,60 @@
 "use client";
 
-export default function Header() {
+interface HeaderProps {
+  tweetCount: number;
+  authorCount: number;
+}
+
+export default function Header({ tweetCount, authorCount }: HeaderProps) {
   return (
-    <header className="text-center mb-12">
-      <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+    <header className="mb-14">
+      {/* Top label */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-[#d4ff00] opacity-60"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4ff00]"></span>
         </span>
-        <span className="text-purple-300 text-sm font-medium">
-          Curated Marketing Wisdom
+        <span className="text-[#d4ff00] text-xs font-bold tracking-widest uppercase">
+          Open Source · Community Curated
         </span>
       </div>
 
-      <h1 className="text-4xl md:text-6xl font-bold mb-4">
-        <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
-          Marketing Tweets
-        </span>
+      {/* Main title */}
+      <h1 className="text-5xl md:text-7xl font-black leading-none tracking-tight mb-6">
+        <span className="text-white">The</span>{" "}
+        <span className="text-[#d4ff00]">Marketing</span>
         <br />
-        <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-          Repository
-        </span>
+        <span className="text-white">Tweet Vault.</span>
       </h1>
 
-      <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-        A curated collection of the best marketing insights from Twitter.
-        Filter, search, and discover strategies that work.
-      </p>
+      {/* Divider */}
+      <div className="accent-line w-24 mb-6" />
+
+      {/* Description + stats in a row */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <p className="text-[#888] text-base max-w-lg leading-relaxed">
+          Real advice from real builders. No fluff — just the marketing
+          insights that actually move the needle in Web3.
+        </p>
+
+        {/* Stats */}
+        <div className="flex items-center gap-6 shrink-0">
+          <div className="text-center">
+            <p className="text-2xl font-black text-white">{tweetCount}</p>
+            <p className="text-[#555] text-xs uppercase tracking-widest">Tweets</p>
+          </div>
+          <div className="w-px h-10 bg-[#1f1f1f]" />
+          <div className="text-center">
+            <p className="text-2xl font-black text-white">{authorCount}</p>
+            <p className="text-[#555] text-xs uppercase tracking-widest">Authors</p>
+          </div>
+          <div className="w-px h-10 bg-[#1f1f1f]" />
+          <div className="text-center">
+            <p className="text-2xl font-black text-[#d4ff00]">∞</p>
+            <p className="text-[#555] text-xs uppercase tracking-widest">Growing</p>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

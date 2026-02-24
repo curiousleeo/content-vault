@@ -8,14 +8,14 @@ interface FilterBarProps {
   onCategoryChange: (category: Category | "All") => void;
 }
 
-const categoryColors: Record<string, string> = {
-  "All": "from-purple-500 to-blue-500",
-  "Content Strategy": "from-purple-500 to-purple-600",
-  "Personal Branding": "from-blue-500 to-blue-600",
-  "Community Building": "from-green-500 to-green-600",
-  "Web3 Marketing": "from-cyan-500 to-cyan-600",
-  "Copywriting": "from-pink-500 to-pink-600",
-  "Growth": "from-orange-500 to-orange-600",
+const categoryDot: Record<string, string> = {
+  "All": "bg-[#d4ff00]",
+  "Content Strategy": "bg-[#d4ff00]",
+  "Personal Branding": "bg-[#38bdf8]",
+  "Community Building": "bg-[#fb923c]",
+  "Web3 Marketing": "bg-[#c084fc]",
+  "Copywriting": "bg-[#f472b6]",
+  "Growth": "bg-[#4ade80]",
 };
 
 export default function FilterBar({
@@ -26,26 +26,28 @@ export default function FilterBar({
   const allCategories: (Category | "All")[] = ["All", ...categories];
 
   return (
-    <div className="w-full overflow-x-auto scrollbar-hide pb-2">
-      <div className="flex flex-wrap gap-2 justify-center min-w-max px-4 md:px-0">
+    <div className="w-full overflow-x-auto scrollbar-hide">
+      <div className="flex gap-1 min-w-max">
         {allCategories.map((category) => {
           const isSelected = selectedCategory === category;
           return (
             <button
               key={category}
               onClick={() => onCategoryChange(category)}
-              className={`
-                relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
-                ${
-                  isSelected
-                    ? `bg-gradient-to-r ${categoryColors[category]} text-white shadow-lg shadow-purple-500/25`
-                    : "bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700/50"
-                }
-              `}
+              className={`relative flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 whitespace-nowrap ${
+                isSelected
+                  ? "bg-[#1a1a1a] text-white border border-[#2f2f2f]"
+                  : "text-[#666] hover:text-[#aaa] hover:bg-[#161616] border border-transparent"
+              }`}
             >
+              <span
+                className={`w-2 h-2 rounded-full shrink-0 transition-opacity ${
+                  categoryDot[category] || "bg-[#555]"
+                } ${isSelected ? "opacity-100" : "opacity-40"}`}
+              />
               {category}
               {isSelected && (
-                <span className="absolute inset-0 rounded-full bg-white/10 animate-pulse" />
+                <span className="absolute bottom-0 left-4 right-4 h-px bg-[#d4ff00] rounded-full" />
               )}
             </button>
           );

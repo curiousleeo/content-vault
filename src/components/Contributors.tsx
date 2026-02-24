@@ -13,19 +13,23 @@ export default function Contributors({ contributors }: ContributorsProps) {
 
   return (
     <section className="mt-20">
-      <div className="text-center mb-10">
-        <span className="inline-block px-4 py-1.5 text-xs font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full mb-4">
-          Open Source Community
-        </span>
-        <h2 className="text-3xl font-bold text-white mb-3">
-          Our Contributors
-        </h2>
-        <p className="text-slate-400 max-w-xl mx-auto">
-          Amazing people who curate the best marketing tweets for everyone.
+      <div className="flex items-end justify-between mb-8">
+        <div>
+          <p className="text-[#d4ff00] text-xs font-bold tracking-widest uppercase mb-2">
+            Open Source
+          </p>
+          <h2 className="text-2xl font-black text-white">
+            Contributors
+          </h2>
+        </div>
+        <p className="text-[#555] text-sm hidden sm:block">
+          They built this together
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="accent-line mb-8" />
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {sorted.map((contributor) => {
           const handle = contributor.handle.replace("@", "");
           return (
@@ -34,24 +38,22 @@ export default function Contributors({ contributors }: ContributorsProps) {
               href={`https://x.com/${handle}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center p-5 bg-slate-800/60 border border-slate-700/50 rounded-2xl hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col items-center p-4 bg-[#111] border border-[#1f1f1f] rounded-xl hover:border-[#2f2f2f] hover:bg-[#161616] transition-all duration-150"
             >
               <img
                 src={`https://unavatar.io/twitter/${handle}`}
                 alt={contributor.name}
-                className="w-14 h-14 rounded-full ring-2 ring-purple-500/30 group-hover:ring-purple-500/60 transition-all mb-3"
+                className="w-12 h-12 rounded-full ring-2 ring-[#1f1f1f] group-hover:ring-[#d4ff00]/30 transition-all mb-3 object-cover"
               />
-              <p className="text-white font-medium text-sm text-center truncate w-full">
+              <p className="text-white font-semibold text-xs text-center truncate w-full">
                 {contributor.name}
               </p>
-              <p className="text-slate-400 text-xs truncate w-full text-center">
+              <p className="text-[#555] text-xs truncate w-full text-center mb-2">
                 {contributor.handle}
               </p>
-              <div className="mt-2 px-2.5 py-0.5 bg-purple-500/15 rounded-full">
-                <span className="text-purple-300 text-xs font-medium">
-                  {contributor.tweetsAdded} {contributor.tweetsAdded === 1 ? "tweet" : "tweets"}
-                </span>
-              </div>
+              <span className="px-2 py-0.5 bg-[#d4ff00]/10 border border-[#d4ff00]/20 rounded-full text-[#d4ff00] text-xs font-medium">
+                {contributor.tweetsAdded} added
+              </span>
             </a>
           );
         })}
