@@ -81,6 +81,8 @@ export default function TweetCard({ tweet }: TweetCardProps) {
   const [hasUpvoted, setHasUpvoted] = useState(false);
   const [upvoting, setUpvoting] = useState(false);
   const [popped, setPopped] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const style = categoryStyle[tweet.category] || fallbackStyle;
 
@@ -88,16 +90,20 @@ export default function TweetCard({ tweet }: TweetCardProps) {
     setHasUpvoted(getUpvotedTweets().has(tweet.id));
   }, [tweet.id]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (showPreview) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [showPreview]);
+
   const handleUpvote = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (hasUpvoted || upvoting) return;
-
     setUpvoting(true);
     setPopped(true);
     setTimeout(() => setPopped(false), 300);
-
     try {
       const res = await fetch("/api/upvote", {
         method: "POST",
@@ -114,6 +120,24 @@ export default function TweetCard({ tweet }: TweetCardProps) {
       // silently fail
     } finally {
       setUpvoting(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const res = await fetch(`/card/${tweet.id}/opengraph-image`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${tweet.author.handle.replace("@", "")}-tweet.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      window.open(`/card/${tweet.id}/opengraph-image`, "_blank");
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -170,7 +194,7 @@ export default function TweetCard({ tweet }: TweetCardProps) {
         </div>
       </div>
 
-      {/* Tweet text — the STAR of the card */}
+      {/* Tweet text */}
       <p className="text-[#d0d0d0] text-[15px] leading-relaxed flex-1 line-clamp-6 mb-5">
         {tweet.text}
       </p>
@@ -193,22 +217,8 @@ export default function TweetCard({ tweet }: TweetCardProps) {
             </span>
           )}
           <button
-            onClick={async (e) => {
-              e.stopPropagation();
-              try {
-                const res = await fetch(`/card/${tweet.id}/opengraph-image`);
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `tweet-${tweet.id}.png`;
-                a.click();
-                URL.revokeObjectURL(url);
-              } catch {
-                window.open(`/card/${tweet.id}/opengraph-image`, "_blank");
-              }
-            }}
-            title="Download tweet card image"
+            onClick={(e) => { e.stopPropagation(); setShowPreview(true); }}
+            title="Share this tweet"
             className="text-[#333] hover:text-[#d4ff00] transition-colors"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,8 +237,72 @@ export default function TweetCard({ tweet }: TweetCardProps) {
   };
 
   return (
-    <div className={cardClass} onClick={handleCardClick}>
-      {cardContent}
-    </div>
+    <>
+      <div className={cardClass} onClick={handleCardClick}>
+        {cardContent}
+      </div>
+
+      {/* Preview modal */}
+      {showPreview && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(6px)" }}
+          onClick={() => setShowPreview(false)}
+        >
+          <div
+            className="w-full max-w-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Author header */}
+            <div className="flex items-center gap-3 mb-4 px-1">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-[#d4ff00]/30">
+                <Image src={tweet.author.avatar} alt={tweet.author.name} fill className="object-cover" />
+              </div>
+              <div>
+                <p className="text-white font-bold text-base">{tweet.author.name}</p>
+                <p className="text-[#d4ff00] text-xs">{tweet.author.handle}</p>
+              </div>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="ml-auto text-[#555] hover:text-white transition-colors p-1"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Card image preview */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/card/${tweet.id}/opengraph-image`}
+              alt={`Tweet card by ${tweet.author.name}`}
+              className="w-full rounded-xl shadow-2xl mb-4"
+              style={{ border: "1px solid #222" }}
+            />
+
+            {/* Action buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={handleDownload}
+                disabled={downloading}
+                className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-[#d4ff00] hover:bg-[#c8f000] text-black font-bold rounded-xl transition-colors text-sm disabled:opacity-60"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                {downloading ? "Downloading..." : "Download Image"}
+              </button>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="px-5 py-3 bg-[#111] border border-[#2a2a2a] hover:bg-[#181818] text-[#888] hover:text-white font-medium rounded-xl transition-colors text-sm"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

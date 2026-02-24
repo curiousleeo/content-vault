@@ -62,8 +62,8 @@ export default async function Image({
   }
 
   const accent = categoryColors[tweet.category] || "#d4ff00";
-  const text = tweet.text.length > 300 ? tweet.text.substring(0, 297) + "..." : tweet.text;
-  const fontSize = text.length > 220 ? "24px" : text.length > 130 ? "28px" : "34px";
+  const text = tweet.text.length > 280 ? tweet.text.substring(0, 277) + "..." : tweet.text;
+  const fontSize = text.length > 200 ? "22px" : text.length > 120 ? "26px" : "30px";
 
   return new ImageResponse(
     (
@@ -74,145 +74,117 @@ export default async function Image({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          padding: "0",
           fontFamily: "system-ui, -apple-system, sans-serif",
-          borderLeft: `14px solid ${accent}`,
+          borderLeft: `12px solid ${accent}`,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            padding: "60px 72px 0 72px",
-          }}
-        >
-          {/* Category */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              marginBottom: "40px",
-            }}
-          >
-            <div
-              style={{
-                width: "10px",
-                height: "10px",
-                borderRadius: "50%",
-                background: accent,
-              }}
-            />
-            <span
-              style={{
-                color: accent,
-                fontSize: "13px",
-                fontWeight: "700",
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-              }}
-            >
-              {tweet.category}
-            </span>
-          </div>
-
-          {/* Big opening quote */}
-          <div
-            style={{
-              color: accent,
-              fontSize: "80px",
-              lineHeight: 0.6,
-              fontWeight: "900",
-              marginBottom: "16px",
-              opacity: 0.4,
-            }}
-          >
-            &ldquo;
-          </div>
-
-          {/* Tweet text */}
-          <div
-            style={{
-              color: "#eeeeee",
-              fontSize,
-              lineHeight: 1.55,
-              fontWeight: "500",
-              flex: 1,
-            }}
-          >
-            {text}
-          </div>
-        </div>
-
-        {/* Footer */}
+        {/* Top: Author hero — the most prominent element */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            padding: "28px 72px",
-            borderTop: "1px solid #1a1a1a",
-            marginTop: "24px",
+            gap: "20px",
+            padding: "44px 72px 32px 72px",
+            borderBottom: `1px solid ${accent}18`,
           }}
         >
-          {/* Author */}
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={tweet.author.avatar}
-              alt={tweet.author.name}
-              width={52}
-              height={52}
-              style={{
-                borderRadius: "50%",
-                border: `2px solid ${accent}40`,
-              }}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "3px",
-              }}
-            >
-              <span
-                style={{
-                  color: "#ffffff",
-                  fontSize: "18px",
-                  fontWeight: "700",
-                }}
-              >
-                {tweet.author.name}
-              </span>
-              <span style={{ color: "#555", fontSize: "14px" }}>
-                {tweet.author.handle}
-              </span>
-            </div>
-          </div>
-
-          {/* Vault brand */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "#d4ff00",
-              }}
-            />
-            <span
-              style={{
-                color: "#d4ff00",
-                fontSize: "13px",
-                fontWeight: "700",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-              }}
-            >
-              Marketing Tweet Vault
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={tweet.author.avatar}
+            alt={tweet.author.name}
+            width={72}
+            height={72}
+            style={{
+              borderRadius: "50%",
+              border: `3px solid ${accent}`,
+            }}
+          />
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
+            <span style={{ color: "#ffffff", fontSize: "26px", fontWeight: "800", letterSpacing: "-0.5px" }}>
+              {tweet.author.name}
+            </span>
+            <span style={{ color: accent, fontSize: "15px", fontWeight: "600" }}>
+              {tweet.author.handle}
             </span>
           </div>
+          {/* Category pill */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 14px",
+              borderRadius: "999px",
+              background: `${accent}15`,
+              border: `1px solid ${accent}30`,
+            }}
+          >
+            <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: accent }} />
+            <span style={{ color: accent, fontSize: "11px", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase" }}>
+              {tweet.category}
+            </span>
+          </div>
+        </div>
+
+        {/* Tweet text */}
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            padding: "36px 72px",
+            position: "relative",
+          }}
+        >
+          {/* Big quote mark */}
+          <span
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "64px",
+              color: accent,
+              fontSize: "72px",
+              fontWeight: "900",
+              lineHeight: 1,
+              opacity: 0.2,
+            }}
+          >
+            &ldquo;
+          </span>
+          <p
+            style={{
+              color: "#e8e8e8",
+              fontSize,
+              lineHeight: 1.6,
+              fontWeight: "500",
+              paddingLeft: "16px",
+            }}
+          >
+            {text}
+          </p>
+        </div>
+
+        {/* Footer: vault brand */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            padding: "16px 72px 24px",
+            gap: "8px",
+          }}
+        >
+          <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#d4ff00" }} />
+          <span
+            style={{
+              color: "#444",
+              fontSize: "11px",
+              fontWeight: "700",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+            }}
+          >
+            Marketing Tweet Vault
+          </span>
         </div>
       </div>
     ),
