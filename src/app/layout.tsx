@@ -5,32 +5,30 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Marketing Tweets Repository",
+  title: "The Marketing Tweet Vault",
   description:
-    "A curated collection of the best marketing insights from Twitter. Filter, search, and discover strategies that work.",
+    "Real advice from real builders. The best Web3 marketing insights, curated by the community. Filter, search, upvote.",
   keywords: [
     "marketing",
+    "web3 marketing",
+    "crypto marketing",
     "tweets",
-    "social media",
-    "SEO",
-    "content marketing",
+    "community",
+    "personal branding",
     "copywriting",
-    "analytics",
-    "paid ads",
-    "email marketing",
+    "growth",
+    "content strategy",
   ],
-  authors: [{ name: "Marketing Tweets Repo" }],
+  authors: [{ name: "Marketing Tweet Vault" }],
   openGraph: {
-    title: "Marketing Tweets Repository",
-    description:
-      "A curated collection of the best marketing insights from Twitter.",
+    title: "The Marketing Tweet Vault",
+    description: "Real advice from real builders. Web3 marketing wisdom, curated by the community.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marketing Tweets Repository",
-    description:
-      "A curated collection of the best marketing insights from Twitter.",
+    title: "The Marketing Tweet Vault",
+    description: "Real advice from real builders. Web3 marketing wisdom, curated by the community.",
   },
 };
 
