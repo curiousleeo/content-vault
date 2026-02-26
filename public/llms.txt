@@ -1,0 +1,32 @@
+# The Content Vault
+
+> A curated, community-maintained collection of marketing wisdom and vibe coding insights from real builders on X (Twitter) and Instagram.
+
+## What This Site Is
+
+The Content Vault is an open-source resource with two sections:
+
+- **Marketing**: Real-world advice on content strategy, personal branding, community building, Web3 marketing, copywriting, and growth — sourced from practitioners on X/Twitter.
+- **Vibe Coding**: Practical tips on AI coding tools & stacks, prompting techniques, developer workflow/productivity, and project ideas — sourced from builders on X/Twitter and Instagram Reels.
+
+## Content Format
+
+Each item in the vault is either:
+- A **Tweet**: A post from X/Twitter with author handle, text, category, and link to original
+- A **Reel**: An Instagram reel with author, caption/key takeaway, category, and link to original
+
+All content is community-curated and upvoted. Items are organized by section (Marketing / Vibe Coding) and sub-category.
+
+## Categories
+
+Marketing: Content Strategy, Personal Branding, Community Building, Web3 Marketing, Copywriting, Growth
+Vibe Coding: AI Tools & Stacks, Prompting Tips, Workflow / Productivity, Project Ideas
+
+## Who It's For
+
+Marketers, builders, and creators who want curated, actionable advice without the noise.
+
+## Source
+
+Open source on GitHub: https://github.com/curiousleeo/content-vault
+Live site: https://content-vault.vercel.app
