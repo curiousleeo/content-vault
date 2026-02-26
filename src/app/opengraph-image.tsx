@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "The Marketing Tweet Vault";
+export const alt = "The Content Vault";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -78,7 +78,7 @@ export default async function Image() {
               lineHeight: 1,
             }}
           >
-            The Marketing
+            The Content
           </span>
           <span
             style={{
@@ -89,7 +89,7 @@ export default async function Image() {
               lineHeight: 1,
             }}
           >
-            Tweet Vault.
+            Vault.
           </span>
         </div>
 
@@ -103,8 +103,8 @@ export default async function Image() {
             marginBottom: "auto",
           }}
         >
-          Real advice from real builders. No fluff — just the marketing
-          insights that move the needle in Web3.
+          Marketing wisdom and vibe coding insights from real builders.
+          Curated by the community.
         </span>
 
         {/* Bottom stats row */}
@@ -130,7 +130,7 @@ export default async function Image() {
                 textTransform: "uppercase",
               }}
             >
-              Tweets
+              Items
             </span>
           </div>
           <div
@@ -141,8 +141,8 @@ export default async function Image() {
             }}
           />
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <span style={{ color: "#ffffff", fontSize: "30px", fontWeight: "900" }}>
-              11
+            <span style={{ color: "#d4ff00", fontSize: "30px", fontWeight: "900" }}>
+              2
             </span>
             <span
               style={{
@@ -153,7 +153,7 @@ export default async function Image() {
                 textTransform: "uppercase",
               }}
             >
-              Authors
+              Sections
             </span>
           </div>
           <div
